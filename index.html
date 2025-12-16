@@ -1,0 +1,178 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Fajna Ceramika | Ręcznie robiona ceramika z Bielska-Białej</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600;700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <header class="top-bar">
+    <div class="brand">
+      <img class="logo" src="logo.jpg" alt="Logo Fajna Ceramika" />
+      <div>
+        <p class="eyebrow">pracownia rzemieślnicza</p>
+        <p class="brand-name">Fajna Ceramika</p>
+      </div>
+    </div>
+    <nav class="main-nav">
+      <a href="#hero">Start</a>
+      <a href="#store">Sklep</a>
+      <a href="#process">Proces</a>
+      <a href="#contact">Kontakt</a>
+    </nav>
+    <button class="cart-toggle" id="open-cart" aria-label="Otwórz koszyk">
+      <span>🧺</span>
+      <span id="cart-count" class="cart-count">0</span>
+    </button>
+  </header>
+
+  <main>
+    <section id="hero" class="hero">
+      <div class="hero-copy">
+        <p class="eyebrow">Jurij i Tatiana | Bielsko-Biała</p>
+        <h1>Kolorowa, oryginalna i artystyczna ceramika tworzona w całości ręcznie.</h1>
+        <p class="lede">Każdy wyrób przechodzi przez dwukrotny wypał i ręczne szkliwienie, dzięki czemu jest trwały, bezpieczny i jedyny w swoim rodzaju.</p>
+        <div class="hero-actions">
+          <a class="button primary" href="#store">Zobacz kolekcję</a>
+          <a class="button ghost" href="#story">Poznaj twórców</a>
+        </div>
+      </div>
+      <div class="hero-gallery">
+        <img src="set.jpg" alt="Zestaw ceramiczny" class="hero-image main" />
+        <div class="stacked">
+          <img src="cup1.jpg" alt="Ręcznie malowany kubek" />
+          <img src="lighthouse1.jpg" alt="Ceramiczna latarnia" />
+        </div>
+      </div>
+    </section>
+
+    <section id="story" class="story">
+      <div class="section-heading">
+        <p class="eyebrow">Kim jesteśmy</p>
+        <h2>Pracownia, która żyje ceramiką od 1998 roku</h2>
+      </div>
+      <div class="story-grid">
+        <p>Mamy na imię Jurij i Tatiana – jesteśmy mistrzami ceramiki, obecnie tworzymy pracownię „Fajna ceramika” w Bielsku Białej. Rękodziełem ceramicznym zajmujemy się od 1998 roku, co stanowi połowę naszego życia. Pracowaliśmy w wielu krajach, poznając techniki i style ceramiczne z całej Europy.</p>
+        <p>Tak bogate doświadczenie pozwoliło nam stworzyć unikatowe naczynia, elementy dekoru i wiele innych ceramicznych wyrobów na wysokim poziomie technicznym i artystycznym. Każdy wyrób naszej pracowni jest unikatowy, ponieważ tworzony jest w całości ręcznie.</p>
+        <p>Zaczynając od modelowania na kole garncarskim, poprzez lepienie dekoracyjnych elementów, aż na ręcznym malowaniu i szkliwieniu kończąc. Nasza ceramika przechodzi przez dwukrotny wypał, zwiększający jej trwałość i jakość. Proces wyrobu jest czasochłonny – zajmuje aż dwa tygodnie. Jednak efekt końcowy to coś, na co warto czekać.</p>
+        <p>Z dumą prezentujemy państwu kolorową, oryginalną i artystyczną ceramikę, która będzie piękną ozdobą każdego domu. Mamy nadzieję, że wybierając „Fajną ceramikę” będziecie na długo cieszyć się naszymi dziełami stworzonymi z myślą o was.</p>
+      </div>
+    </section>
+
+    <section id="store" class="store">
+      <div class="section-heading">
+        <p class="eyebrow">Sklep online</p>
+        <h2>Ulubione naczynia gotowe do wysyłki</h2>
+        <p class="lede">Wybierz swoje ulubione kolory i kształty. Każdy produkt jest unikatowy, dlatego w sklepie znajdziesz krótkie serie i pojedyncze egzemplarze.</p>
+      </div>
+      <div class="product-grid" id="product-grid"></div>
+    </section>
+
+    <section id="process" class="process">
+      <div class="section-heading">
+        <p class="eyebrow">Jak powstaje ceramika</p>
+        <h2>Od koła garncarskiego po dwukrotny wypał</h2>
+      </div>
+      <div class="process-steps">
+        <div class="step">
+          <h3>Modelowanie</h3>
+          <p>Każdy kształt tworzymy ręcznie na kole garncarskim lub metodą lepienia, dbając o proporcje i wygodę użytkowania.</p>
+        </div>
+        <div class="step">
+          <h3>Malowanie i szkliwienie</h3>
+          <p>Kolory nanosimy pędzlem, warstwa po warstwie. Zdobienia są unikatowe, niepowtarzalne i odporne na mycie.</p>
+        </div>
+        <div class="step">
+          <h3>Dwukrotny wypał</h3>
+          <p>Wypalamy w wysokiej temperaturze, dzięki czemu ceramika jest trwała, bezpieczna do kontaktu z żywnością i gotowa na codzienne użytkowanie.</p>
+        </div>
+      </div>
+    </section>
+
+    <section id="contact" class="contact">
+      <div>
+        <p class="eyebrow">Kontakt</p>
+        <h2>Zapytaj o zamówienia indywidualne</h2>
+        <p>Chętnie przygotujemy zestaw dopasowany do Twojego domu, kawiarni lub prezentu. Napisz do nas, a podpowiemy co wybrać.</p>
+        <div class="contact-grid">
+          <div>
+            <h3>Pracownia</h3>
+            <p>„Fajna ceramika”<br>Bielsko-Biała, Polska</p>
+          </div>
+          <div>
+            <h3>E-mail</h3>
+            <a href="mailto:pracownia@fajna-ceramika.pl">pracownia@fajna-ceramika.pl</a>
+          </div>
+          <div>
+            <h3>Social media</h3>
+            <a href="https://www.instagram.com" target="_blank" rel="noreferrer">Instagram</a><br>
+            <a href="https://www.facebook.com" target="_blank" rel="noreferrer">Facebook</a>
+          </div>
+        </div>
+      </div>
+      <div class="note-card">
+        <h3>Dostawa i pakowanie</h3>
+        <ul>
+          <li>Bezpieczne, ekologiczne wypełnienie paczek</li>
+          <li>Dostawa kurierem na terenie Polski i UE</li>
+          <li>Zwroty i wymiana w ciągu 14 dni</li>
+        </ul>
+      </div>
+    </section>
+  </main>
+
+  <div class="cart-drawer" id="cart-drawer" aria-hidden="true">
+    <div class="cart-panel" role="dialog" aria-labelledby="cart-title">
+      <div class="cart-header">
+        <div>
+          <p class="eyebrow">Twój wybór</p>
+          <h2 id="cart-title">Koszyk</h2>
+        </div>
+        <button class="icon-button" id="close-cart" aria-label="Zamknij koszyk">✕</button>
+      </div>
+      <div class="cart-body">
+        <ul class="cart-items" id="cart-items"></ul>
+        <div class="cart-summary">
+          <div class="summary-row">
+            <span>Suma</span>
+            <strong id="cart-total">0,00 zł</strong>
+          </div>
+          <p class="small">Ceny zawierają podatek VAT. Koszt dostawy wyliczymy po podaniu adresu.</p>
+        </div>
+        <form class="checkout-form" id="checkout-form">
+          <h3>Dane do wysyłki</h3>
+          <label>
+            Imię i nazwisko
+            <input type="text" name="name" required />
+          </label>
+          <label>
+            E-mail do potwierdzenia
+            <input type="email" name="email" required />
+          </label>
+          <label>
+            Adres dostawy
+            <textarea name="address" rows="3" required></textarea>
+          </label>
+          <label>
+            Uwagi do zamówienia
+            <textarea name="notes" rows="2" placeholder="Kolor, dedykacja, preferencje pakowania..."></textarea>
+          </label>
+          <button type="submit" class="button primary full">Zamawiam</button>
+          <p class="small center">Po złożeniu zamówienia skontaktujemy się w ciągu 24h, by potwierdzić wysyłkę.</p>
+          <div id="checkout-message" class="checkout-message" role="status" aria-live="polite"></div>
+        </form>
+      </div>
+    </div>
+  </div>
+
+  <footer class="footer">
+    <p>© 2024 Fajna Ceramika. Ręcznie tworzona ceramika z Bielska-Białej.</p>
+  </footer>
+
+  <script src="script.js"></script>
+</body>
+</html>
