@@ -69,6 +69,17 @@
         <h2>Ulubione naczynia gotowe do wysyłki</h2>
         <p class="lede">Wybierz swoje ulubione kolory i kształty. Każdy produkt jest unikatowy, dlatego w sklepie znajdziesz krótkie serie i pojedyncze egzemplarze.</p>
       </div>
+      <div class="product-filters">
+        <div class="filter-group" id="category-filters" aria-label="Filtruj po kategoriach"></div>
+        <label class="sort-control">
+          Sortuj
+          <select id="sort-select">
+            <option value="featured">Polecane</option>
+            <option value="price-asc">Cena: od najniższej</option>
+            <option value="price-desc">Cena: od najwyższej</option>
+          </select>
+        </label>
+      </div>
       <div class="product-grid" id="product-grid"></div>
     </section>
 
@@ -165,6 +176,24 @@
           <p class="small center">Po złożeniu zamówienia skontaktujemy się w ciągu 24h, by potwierdzić wysyłkę.</p>
           <div id="checkout-message" class="checkout-message" role="status" aria-live="polite"></div>
         </form>
+      </div>
+    </div>
+  </div>
+
+  <div class="product-modal" id="product-modal" aria-hidden="true">
+    <div class="product-modal__content" role="dialog" aria-labelledby="product-modal-title">
+      <button class="icon-button modal-close" id="close-modal" aria-label="Zamknij podgląd">✕</button>
+      <div class="product-modal__grid">
+        <div class="product-modal__image-wrapper">
+          <img id="modal-image" src="" alt="Podgląd produktu" />
+        </div>
+        <div class="product-modal__info">
+          <p class="eyebrow" id="modal-category"></p>
+          <h3 id="product-modal-title"></h3>
+          <p id="modal-description" class="lede"></p>
+          <p class="modal-price" id="modal-price"></p>
+          <button class="button primary" id="modal-add">Dodaj do koszyka</button>
+        </div>
       </div>
     </div>
   </div>

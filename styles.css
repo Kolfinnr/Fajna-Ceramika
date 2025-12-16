@@ -231,6 +231,53 @@ a:hover {
   margin-top: 16px;
 }
 
+.product-filters {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  margin: 0 0 18px;
+}
+
+.filter-group {
+  display: flex;
+  gap: 10px;
+  flex-wrap: wrap;
+}
+
+.chip {
+  border: 1px solid var(--border);
+  background: #fff;
+  border-radius: 999px;
+  padding: 8px 12px;
+  cursor: pointer;
+  font-weight: 600;
+  transition: background 0.2s ease, color 0.2s ease, border-color 0.2s ease;
+}
+
+.chip--active {
+  background: rgba(183, 110, 66, 0.15);
+  border-color: var(--accent);
+  color: var(--accent-strong);
+}
+
+.sort-control {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  font-weight: 600;
+  color: var(--muted);
+}
+
+.sort-control select {
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  padding: 8px 10px;
+  font-family: inherit;
+  background: #fff;
+}
+
 .product-grid {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
@@ -245,6 +292,7 @@ a:hover {
   box-shadow: var(--shadow);
   display: grid;
   gap: 12px;
+  cursor: pointer;
 }
 
 .product-card h3 {
@@ -486,6 +534,65 @@ a:hover {
   color: var(--success);
   font-weight: 700;
   margin: 4px 0 0;
+}
+
+.product-modal {
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.35);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.2s ease;
+  z-index: 30;
+  padding: 16px;
+}
+
+.product-modal.active {
+  opacity: 1;
+  pointer-events: auto;
+}
+
+.product-modal__content {
+  background: #fff;
+  border-radius: 18px;
+  max-width: 960px;
+  width: min(960px, 100%);
+  padding: 20px;
+  position: relative;
+  box-shadow: var(--shadow);
+}
+
+.product-modal__grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+  gap: 16px;
+  align-items: start;
+}
+
+.product-modal__image-wrapper img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.product-modal__info h3 {
+  margin: 6px 0 8px;
+  font-size: 24px;
+}
+
+.modal-close {
+  position: absolute;
+  top: 12px;
+  right: 12px;
+}
+
+.modal-price {
+  font-size: 22px;
+  font-weight: 700;
+  margin: 8px 0 12px;
 }
 
 .small {

@@ -6,6 +6,7 @@ const products = [
     description: 'Komplet dwóch filiżanek z talerzykami, ręcznie malowany pastelowymi szkliwami.',
     image: 'set_cups.jpg',
     badge: 'Nowość',
+    category: 'Zestawy',
   },
   {
     id: 'cup-amber',
@@ -14,6 +15,7 @@ const products = [
     description: 'Kubek o organicznym kształcie z plamami szkliwa w kolorach miodu i błękitu.',
     image: 'cup1.jpg',
     badge: 'Ostatnia sztuka',
+    category: 'Kubki',
   },
   {
     id: 'cup-ocean',
@@ -21,6 +23,7 @@ const products = [
     price: 115,
     description: 'Lekki kubek ze szkliwem inspirowanym falą i plażą, idealny na kawę lub herbatę.',
     image: 'cup2.jpg',
+    category: 'Kubki',
   },
   {
     id: 'butter-dish',
@@ -29,6 +32,7 @@ const products = [
     description: 'Drewniana podstawa i ceramiczna kopuła z ręcznie malowanym wzorem.',
     image: 'butterholder1.jpg',
     badge: 'Bestseller',
+    category: 'Maselnice',
   },
   {
     id: 'butter-forest',
@@ -36,6 +40,7 @@ const products = [
     price: 215,
     description: 'Głęboki odcień zieleni z kremowym szkliwem, pasuje do rustykalnych kuchni.',
     image: 'butterholder2.jpg',
+    category: 'Maselnice',
   },
   {
     id: 'butter-indigo',
@@ -43,6 +48,7 @@ const products = [
     price: 215,
     description: 'Połączenie granatu i bieli z delikatnymi refleksami, dwukrotnie wypalana.',
     image: 'butterholder3.jpg',
+    category: 'Maselnice',
   },
   {
     id: 'lighthouse-amber',
@@ -50,6 +56,7 @@ const products = [
     price: 260,
     description: 'Ceramiczna latarnia w odcieniach bursztynu. Pięknie rozprasza światło świec.',
     image: 'lighthouse1.jpg',
+    category: 'Lampiony',
   },
   {
     id: 'lighthouse-blue',
@@ -57,6 +64,7 @@ const products = [
     price: 260,
     description: 'Latarnia inspirowana morską bryzą, szkliwo w odcieniach turkusu i błękitu.',
     image: 'lighthouse2.jpg',
+    category: 'Lampiony',
   },
   {
     id: 'serving-set',
@@ -64,6 +72,7 @@ const products = [
     price: 380,
     description: 'Duży talerz i miseczka w szkliwach inspirowanych pieczonymi jabłkami.',
     image: 'set.jpg',
+    category: 'Zestawy',
   },
   {
     id: 'plate-handpainted',
@@ -71,6 +80,7 @@ const products = [
     price: 190,
     description: 'Ręcznie malowany motyw kwiatów, idealny na słodkie śniadania.',
     image: 'set_plate1.jpg',
+    category: 'Talerze',
   },
   {
     id: 'mug-big',
@@ -78,6 +88,7 @@ const products = [
     price: 140,
     description: 'Pojemny kubek z szerokim uchem, szkliwo o ciepłym, kremowym odcieniu.',
     image: 'set_cupbig.jpg',
+    category: 'Kubki',
   },
 ];
 
@@ -89,16 +100,53 @@ const cartTotal = document.getElementById('cart-total');
 const cartCount = document.getElementById('cart-count');
 const checkoutForm = document.getElementById('checkout-form');
 const checkoutMessage = document.getElementById('checkout-message');
+const categoryFilters = document.getElementById('category-filters');
+const sortSelect = document.getElementById('sort-select');
+const modal = document.getElementById('product-modal');
+const modalImage = document.getElementById('modal-image');
+const modalTitle = document.getElementById('product-modal-title');
+const modalDescription = document.getElementById('modal-description');
+const modalPrice = document.getElementById('modal-price');
+const modalCategory = document.getElementById('modal-category');
+const modalAddButton = document.getElementById('modal-add');
+
+let activeCategory = 'Wszystko';
+let lastViewedProduct = null;
 
 function formatPrice(value) {
   return `${value.toFixed(2)} zł`;
 }
 
+function renderFilters() {
+  const categories = ['Wszystko', ...new Set(products.map((product) => product.category))];
+  categoryFilters.innerHTML = '';
+
+  categories.forEach((category) => {
+    const button = document.createElement('button');
+    button.type = 'button';
+    button.className = `chip ${category === activeCategory ? 'chip--active' : ''}`;
+    button.dataset.category = category;
+    button.textContent = category;
+    categoryFilters.appendChild(button);
+  });
+}
+
+function sortProducts(list, sortKey) {
+  const sorted = [...list];
+  if (sortKey === 'price-asc') return sorted.sort((a, b) => a.price - b.price);
+  if (sortKey === 'price-desc') return sorted.sort((a, b) => b.price - a.price);
+  return sorted;
+}
+
 function renderProducts() {
   productGrid.innerHTML = '';
-  products.forEach((product) => {
+  const filtered = products.filter((product) => activeCategory === 'Wszystko' || product.category === activeCategory);
+  const sorted = sortProducts(filtered, sortSelect.value);
+
+  sorted.forEach((product) => {
     const card = document.createElement('article');
     card.className = 'product-card';
+    card.dataset.id = product.id;
     card.innerHTML = `
       <img src="${product.image}" alt="${product.name}" />
       <div class="price-row">
@@ -208,10 +256,37 @@ function closeCart() {
   cartDrawer.setAttribute('aria-hidden', 'true');
 }
 
-function handleProductClick(event) {
+function openModal(productId) {
+  const product = findProduct(productId);
+  if (!product) return;
+  lastViewedProduct = product;
+  modalImage.src = product.image;
+  modalImage.alt = product.name;
+  modalTitle.textContent = product.name;
+  modalDescription.textContent = product.description;
+  modalPrice.textContent = formatPrice(product.price);
+  modalCategory.textContent = product.category;
+  modal.classList.add('active');
+  modal.setAttribute('aria-hidden', 'false');
+}
+
+function closeModal() {
+  modal.classList.remove('active');
+  modal.setAttribute('aria-hidden', 'true');
+  lastViewedProduct = null;
+}
+
+function handleProductGridClick(event) {
   const button = event.target.closest('button[data-add]');
-  if (!button) return;
-  addToCart(button.dataset.add);
+  if (button) {
+    addToCart(button.dataset.add);
+    return;
+  }
+
+  const card = event.target.closest('.product-card');
+  if (card) {
+    openModal(card.dataset.id);
+  }
 }
 
 function handleCartClick(event) {
@@ -257,8 +332,9 @@ function handleCheckout(event) {
 }
 
 function init() {
+  renderFilters();
   renderProducts();
-  productGrid.addEventListener('click', handleProductClick);
+  productGrid.addEventListener('click', handleProductGridClick);
   cartItems.addEventListener('click', handleCartClick);
   document.getElementById('open-cart').addEventListener('click', openCart);
   document.getElementById('close-cart').addEventListener('click', closeCart);
@@ -266,6 +342,26 @@ function init() {
     if (event.target === cartDrawer) closeCart();
   });
   checkoutForm.addEventListener('submit', handleCheckout);
+
+  categoryFilters.addEventListener('click', (event) => {
+    const button = event.target.closest('button[data-category]');
+    if (!button) return;
+    activeCategory = button.dataset.category;
+    renderFilters();
+    renderProducts();
+  });
+
+  sortSelect.addEventListener('change', renderProducts);
+
+  document.getElementById('close-modal').addEventListener('click', closeModal);
+  modal.addEventListener('click', (event) => {
+    if (event.target === modal) closeModal();
+  });
+  modalAddButton.addEventListener('click', () => {
+    if (!lastViewedProduct) return;
+    addToCart(lastViewedProduct.id);
+    closeModal();
+  });
 }
 
 document.addEventListener('DOMContentLoaded', init);
